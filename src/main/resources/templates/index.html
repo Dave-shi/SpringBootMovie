@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电影网</title>
+    <script src="/js/jquery-1.12.2.js" type="text/javascript"></script>
+
+    <style>
+        #movies div {
+            float: left;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>最新电影</h1>
+
+<div id="movies">
+
+</div>
+
+<script>
+    $(function(){
+        $.get("/movies", function(result){
+            $.each(result, function(index, m){
+                var html = '<div><a href="/movie?id='+ m.id +'"><img src="' + m.img + '" alt=""></a><p>' + m.title + '</p></div>'
+                console.log(html)
+                $('#movies').append($(html))
+            })
+            console.log(result)
+        })
+    })
+</script>
+</body>
+</html>
